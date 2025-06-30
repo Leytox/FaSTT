@@ -1,12 +1,8 @@
-import { Hono } from "hono";
 import { bot } from "./bot";
-const app = new Hono();
-
-const PORT = process.env.PORT || 3000;
 
 bot.launch();
 
-export default {
-  port: PORT,
-  fetch: app.fetch,
-};
+process.once("SIGINT", () => bot.stop("SIGINT"));
+process.once("SIGTERM", () => bot.stop("SIGTERM"));
+
+console.log("Bot started successfully!");

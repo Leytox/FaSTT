@@ -1,7 +1,8 @@
-import { Context, Format, NarrowedContext, Telegraf } from "telegraf";
+import { Context, Format, Telegraf } from "telegraf";
+import type { Message, Update } from "telegraf/types";
+import type { NarrowedContext } from "telegraf";
 import { message } from "telegraf/filters";
 import { transcribe } from "./ai";
-import { Message, Update } from "telegraf/typings/core/types/typegram";
 
 export const bot = new Telegraf(process.env.BOT_TOKEN!);
 
@@ -18,7 +19,7 @@ async function replyWithTranscription(
         )
     >
   >,
-  fileId: string
+  fileId: string,
 ) {
   const file = await bot.telegram.getFile(fileId);
   const fileUrl = `https://api.telegram.org/file/bot${process.env.BOT_TOKEN}/${file.file_path}`;
@@ -56,6 +57,3 @@ bot.on(message("video_note"), async (ctx) => {
   const fileId = video_note.file_id;
   await replyWithTranscription(ctx, fileId);
 });
-
-process.once("SIGINT", () => bot.stop("SIGINT"));
-process.once("SIGTERM", () => bot.stop("SIGTERM"));
