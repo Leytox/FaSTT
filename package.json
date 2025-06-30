@@ -1,16 +1,21 @@
 {
   "name": "fastt",
   "scripts": {
-    "build": "bun build src/index.ts --outfile dist/index.js --external=telegraf",
+    "build": "bun build --entrypoints src/index.ts --outdir ./dist --target bun --external:telegraf",
     "start": "bun dist/index.js",
     "dev": "bun --hot src/index.ts"
   },
   "dependencies": {
     "groq-sdk": "^0.26.0",
-    "hono": "^4.8.3",
     "telegraf": "^4.16.3"
   },
   "devDependencies": {
     "@types/bun": "latest"
+  },
+  "module": "src/index.ts",
+  "type": "module",
+  "private": true,
+  "peerDependencies": {
+    "typescript": "^5"
   }
 }

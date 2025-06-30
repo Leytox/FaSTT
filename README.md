@@ -4,7 +4,6 @@
 
 - Bun
 - Telegraf
-- Hono
 - Groq SDK
 
 ## Official Bot link
@@ -15,7 +14,6 @@
 
 ### Enviroment variables
 
-- Choose port and set PORT variable to a desired one
 - Obtain API key for a Telegram bot using [BotFather](https://t.me/BotFather) and paste it in BOT_TOKEN
 - Obtain API key from [GROQ](https://groq.com) and paste it in GROQ_API_KEY
 
