@@ -29,6 +29,17 @@ async function replyWithTranscription(
       message_id: ctx.message.message_id,
     },
   });
+  const username =
+    ctx.from?.username ||
+    ctx.from?.first_name ||
+    ctx.from?.id.toString() ||
+    "Unknown";
+  const userId = ctx.from?.id || "Unknown";
+
+  if (process.env.NODE_ENV !== "production")
+    console.log(
+      `[LOG] User: @${username} (ID: ${userId}) | Media URL: ${fileUrl} | Transcription: ${response_text}`,
+    );
 }
 
 bot.start((ctx) => ctx.reply("Welcome, send an audio to turn it to the text"));
