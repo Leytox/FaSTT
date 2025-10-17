@@ -1,0 +1,8 @@
+services:
+  fastt:
+    image: fastt:latest
+    build: .
+    environment:
+      - GROQ_API_KEY=${GROQ_API_KEY}
+      - BOT_TOKEN=${BOT_TOKEN}
+      - NODE_ENV=production
